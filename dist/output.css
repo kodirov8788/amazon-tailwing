@@ -549,7 +549,32 @@ video {
   --tw-backdrop-sepia:  ;
 }
 
+.h-\[100px\] {
+  height: 100px;
+}
+
+.h-1\/5 {
+  height: 20%;
+}
+
+.h-\[100vh\] {
+  height: 100vh;
+}
+
+.min-h-\[100vh\] {
+  min-height: 100vh;
+}
+
+.w-full {
+  width: 100%;
+}
+
 .bg-red-600 {
   --tw-bg-opacity: 1;
   background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+}
+
+.bg-\[\#131922\] {
+  --tw-bg-opacity: 1;
+  background-color: rgb(19 25 34 / var(--tw-bg-opacity));
 }

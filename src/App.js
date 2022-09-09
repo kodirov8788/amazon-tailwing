@@ -1,8 +1,12 @@
+import Navbar from "./components/Navbar";
 
 function App() {
+  const style = {
+    app: "h-[100vh]"
+  }
   return (
-    <div className="App">
-      <h1 className="bg-red-600">Salom dunyo</h1>
+    <div className={style.app}>
+      <Navbar />
     </div>
   );
 }
