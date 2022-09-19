@@ -2,7 +2,8 @@ import React from 'react'
 import { FaBars } from "react-icons/fa"
 import { FiChevronRight, FiUser, FiShoppingCart, FiSearch } from "react-icons/fi"
 import { Link } from 'react-router-dom'
-const Navbar = () => {
+const Navbar = ({ profileName, profileImg }) => {
+    console.log(profileName, profileImg);
     const style = {
         nav: "bg-[#131921] w-full h-1/5 text-white p-[16px]",
         nav_first: "flex justify-between",
