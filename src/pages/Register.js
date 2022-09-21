@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, storage, db } from "../firebase/firebaseConfig"
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { doc, setDoc } from "firebase/firestore";
+import { doc, serverTimestamp, setDoc } from "firebase/firestore";
 
 function Register() {
     const navigate = useNavigate()
@@ -60,6 +60,7 @@ function Register() {
                             email: email,
                             id: res.user.uid,
                             photoURL: downloadURL
+
                         });
                         navigate("/")
                     });

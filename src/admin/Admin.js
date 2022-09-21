@@ -2,7 +2,7 @@ import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { storage, db } from "../firebase/firebaseConfig"
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { collection, doc, setDoc, addDoc } from "firebase/firestore";
+import { collection, doc, setDoc, addDoc, serverTimestamp } from "firebase/firestore";
 
 function Admin() {
     const navigate = useNavigate()
@@ -43,7 +43,8 @@ function Admin() {
                             productColor: productColor,
                             productImage: downloadURL,
                             productWeight: Number(productWeight),
-                            productSale: Number(productSale)
+                            productSale: Number(productSale),
+                            date: serverTimestamp()
                         });
                         navigate("/")
                     });

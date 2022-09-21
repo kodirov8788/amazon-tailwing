@@ -1,9 +1,11 @@
 import React from 'react'
 import { FaBars } from "react-icons/fa"
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/firebaseConfig"
 import { FiChevronRight, FiUser, FiShoppingCart, FiSearch } from "react-icons/fi"
 import { Link } from 'react-router-dom'
 const Navbar = ({ profileName, profileImg }) => {
-    console.log(profileName, profileImg);
+    // console.log(profileName, profileImg);
     const style = {
         nav: "bg-[#131921] w-full h-1/5 text-white p-[16px]",
         nav_first: "flex justify-between",
@@ -22,6 +24,8 @@ const Navbar = ({ profileName, profileImg }) => {
     }
     return (
         <div className={style.nav}>
+            <button className="border bg-red-400 hover:bg-blue-400 p-2 rounded duration-500"
+                onClick={() => signOut(auth)}>Sign Out</button>
             <div className={style.nav_first}>
                 <div className={style.nav_first_left}>
                     <FaBars className={style.nav_icon_bar} />
@@ -30,6 +34,8 @@ const Navbar = ({ profileName, profileImg }) => {
 
 
                 <div className={style.nav_first_right}>
+                    <h1>{profileName}</h1>
+                    <img src={profileImg} className="w-[50px] rounded-full" alt="" />
                     <span className='mb-[3px]'><Link to="/login">Sign in</Link></span>
                     <FiChevronRight />
                     <FiUser className={style.nav_icon_user} />
@@ -41,7 +47,7 @@ const Navbar = ({ profileName, profileImg }) => {
                 <input className={style.nav_search_input} type="text" placeholder="Search Amazon" />
                 <button className={style.nav_seacrh_icons}><FiSearch className=' text-[27px] text-[#333333]' /></button>
             </div>
-            <div className='h-[25%]  mt-[10px] list-none flex items-center overflow-x-auto snap-none scroller'>
+            {/* <div className='h-[25%]  mt-[10px] list-none flex items-center overflow-x-auto snap-none scroller'>
                 <li className={style.nav_li}><a href="#">Deals</a></li>
                 <li className={style.nav_li}><a href="#" className={style.nav_a}>Amazon Basics</a></li>
                 <li className={style.nav_li}><a href="#" className={style.nav_a}>Best Sellers</a></li>
@@ -55,7 +61,7 @@ const Navbar = ({ profileName, profileImg }) => {
                 <li className={style.nav_li}><a href="#" className={style.nav_a}>Gift Cards</a></li>
                 <li className={style.nav_li}><a href="#">Music</a></li>
                 <li className={style.nav_li}><a href="#">Lists</a></li>
-            </div>
+            </div> */}
         </div>
     )
 }
