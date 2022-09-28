@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaBars } from "react-icons/fa"
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig"
 import { FiChevronRight, FiUser, FiShoppingCart, FiSearch } from "react-icons/fi"
 import { Link } from 'react-router-dom'
+import { ProductContext } from '../context/ProductContext';
+import Cart from './Cart';
 const Navbar = ({ profileName, profileImg }) => {
-    // console.log(profileName, profileImg);
+    const { state } = useContext(ProductContext)
     const style = {
         nav: "bg-[#131921] w-full h-1/5 text-white p-[16px]",
         nav_first: "flex justify-between",
@@ -40,28 +42,14 @@ const Navbar = ({ profileName, profileImg }) => {
                     <FiChevronRight />
                     <FiUser className={style.nav_icon_user} />
                     <FiShoppingCart className={style.nav_icon_cart} />
-                    <span className="text-[#F08804]">0</span>
+                    <span className="text-[#F08804]">{state.products ? state.products?.length : 0}</span>
                 </div>
             </div>
             <div className={style.nav_search}>
                 <input className={style.nav_search_input} type="text" placeholder="Search Amazon" />
                 <button className={style.nav_seacrh_icons}><FiSearch className=' text-[27px] text-[#333333]' /></button>
             </div>
-            {/* <div className='h-[25%]  mt-[10px] list-none flex items-center overflow-x-auto snap-none scroller'>
-                <li className={style.nav_li}><a href="#">Deals</a></li>
-                <li className={style.nav_li}><a href="#" className={style.nav_a}>Amazon Basics</a></li>
-                <li className={style.nav_li}><a href="#" className={style.nav_a}>Best Sellers</a></li>
-                <li className={style.nav_li}><a href="#">Livestreams</a></li>
-                <li className={style.nav_li}><a href="#">Video</a></li>
-                <li className={style.nav_li}><a href="#" className={style.nav_a}>New Releases</a></li>
-                <li className={style.nav_li}><a href="#">Home</a></li>
-                <li className={style.nav_li}><a href="#">Books</a></li>
-                <li className={style.nav_li}><a href="#" className={style.nav_a}>Health & Household</a></li>
-                <li className={style.nav_li}><a href="#">Pc</a></li>
-                <li className={style.nav_li}><a href="#" className={style.nav_a}>Gift Cards</a></li>
-                <li className={style.nav_li}><a href="#">Music</a></li>
-                <li className={style.nav_li}><a href="#">Lists</a></li>
-            </div> */}
+            <Cart />
         </div>
     )
 }

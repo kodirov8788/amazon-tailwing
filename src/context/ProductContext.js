@@ -3,14 +3,14 @@ import { createContext, useReducer } from "react"
 export const ProductContext = createContext();
 
 export const ProductContextProvider = ({ children }) => {
+
     const boshlanish = {
-        productName: "",
-        products: {}
+        products: []
     }
     const reducer = (state, action) => {
         switch (action.type) {
             case "ADD__CART":
-                return { ...boshlanish, products: action.payload, productName: "product1" }
+                return { ...state, products: [...state.products, action.payload] }
             default:
                 return state
         }

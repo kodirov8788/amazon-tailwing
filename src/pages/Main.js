@@ -10,7 +10,7 @@ function Main() {
     // console.log(sortedData);
     // console.log(data[0]?.date.seconds);
     const style = {
-        main: "w-4/5 h-full m-auto grid grid-cols-4",
+        main: "w-4/5 h-full m-auto grid grid-cols-3",
     }
 
     useEffect(() => {
