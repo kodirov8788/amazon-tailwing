@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { FaBars } from "react-icons/fa"
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/firebaseConfig"
@@ -6,7 +6,6 @@ import { FiChevronRight, FiUser, FiShoppingCart, FiSearch } from "react-icons/fi
 import { Link } from 'react-router-dom'
 import { ProductContext } from '../context/ProductContext';
 import Cart from './Cart';
-import { useState } from 'react';
 const Navbar = ({ profileName, profileImg }) => {
     const { state } = useContext(ProductContext)
     const style = {
@@ -15,7 +14,7 @@ const Navbar = ({ profileName, profileImg }) => {
         nav_first_left: "flex  flex-[.45] items-start justify-between",
         nav_first_right: "text-[20px] flex flex-[.45] items-center justify-end",
         nav_icon_user: "text-[30px] mx-[3px]",
-        nav_icon_cart: "text-[30px] cursor-pointer",
+        nav_icon_cart: "text-[30px] pointer",
         nav_icon_bar: "text-[40px]",
         nav_logo: "w-[60%] h-[40px] mt-[7px] mr-[10px] select-none ",
         nav_search: "w-full h-[50px] bg-[#fff] rounded-[6px] mt-[15px] flex items-center ",
@@ -25,15 +24,18 @@ const Navbar = ({ profileName, profileImg }) => {
         nav_a: "w-max"
 
     }
+
+
     const [openSide, setOpenSide] = useState(false)
     const AddCartSidebar = () => {
         if (openSide === false) {
             setOpenSide(true)
-        } else {
+        }
+        else {
             setOpenSide(false)
+
         }
     }
-    // console.log(openSide)
     return (
         <div className={style.nav}>
             <button className="border bg-red-400 hover:bg-blue-400 p-2 rounded duration-500"
@@ -59,7 +61,7 @@ const Navbar = ({ profileName, profileImg }) => {
                 <input className={style.nav_search_input} type="text" placeholder="Search Amazon" />
                 <button className={style.nav_seacrh_icons}><FiSearch className=' text-[27px] text-[#333333]' /></button>
             </div>
-            < Cart sidebarFunc={AddCartSidebar} openSide={openSide} />
+            <Cart sidebarFunc={AddCartSidebar} openState={openSide} />
         </div>
     )
 }

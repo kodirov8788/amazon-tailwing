@@ -5,7 +5,7 @@ import { db } from "../firebase/firebaseConfig"
 import Product from '../components/Product';
 function Main() {
     const [data, setData] = useState([])
-    // console.log(data);
+    console.log(data);
     const sortedData = data.sort((a, b) => new Date(b.data.date.seconds) - new Date(a.data.date.seconds))
     // console.log(sortedData);
     // console.log(data[0]?.date.seconds);
@@ -24,7 +24,6 @@ function Main() {
             getData()
         }
     }, [])
-    // console.log(sortedData)
     return (
         <div className={style.main}>
             {

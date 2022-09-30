@@ -1,8 +1,7 @@
 import React, { useContext } from 'react'
-import { useEffect } from 'react'
 import { BsCartPlus } from "react-icons/bs"
+import { TiTick } from 'react-icons/ti'
 import { ProductContext } from '../context/ProductContext'
-import { TiTick } from "react-icons/ti"
 
 function Product({ product }) {
     const { state, dispatch } = useContext(ProductContext)
@@ -15,14 +14,12 @@ function Product({ product }) {
         h2: "text-[18px]",
         img: "w-full h-4/5 object-cover ",
         icon: "text-[30px] mx-auto mt-[20px] group-hover:scale-[1.1] duration-150 cursor-pointer",
+        icon2: "text-[30px] mx-auto mt-[20px] group-hover:scale-[1.1] duration-150 cursor-pointer"
     }
     const AddProduct = (item) => {
         // console.log("product  >>>>", item)
         dispatch({ type: "ADD__CART", payload: item })
     }
-    // console.log(product)
-
-
     return (
         <div className={style.card}>
             <img src={product.data.productImage} alt="" className={style.img} />
@@ -32,16 +29,14 @@ function Product({ product }) {
                     <h2 className={style.h2}> ${product.data.productPrice}</h2>
                 </div>
 
-                {state.products?.some(it => it.id === product.id) ?
-                    < TiTick className={style.icon} /> :
-                    < BsCartPlus className={style.icon} onClick={() => AddProduct(product)} />
+                {
+                    state.products?.some(it => it.id === product.id) ?
+                        <TiTick className={style.icon2} /> : <BsCartPlus className={style.icon} onClick={() => AddProduct(product)} />
                 }
 
 
-
-
             </div>
-        </div >
+        </div>
     )
 }
 

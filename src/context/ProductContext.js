@@ -16,6 +16,7 @@ export const ProductContextProvider = ({ children }) => {
         }
     }
     const [state, dispatch] = useReducer(reducer, boshlanish)
+    console.log(state);
 
     return (
         <ProductContext.Provider value={{ state, dispatch }}>{children}</ProductContext.Provider>
