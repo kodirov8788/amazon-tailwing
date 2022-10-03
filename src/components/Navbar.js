@@ -54,7 +54,7 @@ const Navbar = ({ profileName, profileImg }) => {
                     <FiChevronRight />
                     <FiUser className={style.nav_icon_user} />
                     <FiShoppingCart onClick={AddCartSidebar} className={style.nav_icon_cart} />
-                    <span className="text-[#F08804]">{state.products ? state.products?.length : 0}</span>
+                    <span className="text-[#F08804]">{state.cart ? state.cart?.length : 0}</span>
                 </div>
             </div>
             <div className={style.nav_search}>
