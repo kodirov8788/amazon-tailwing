@@ -28,10 +28,15 @@ export const decrease = (data, id) => {
 export const increase = (data, id) => {
     const newData = [...data];
     newData.forEach((item) => {
-        if (item.id === id) item.quantity += 1;
+        if (item.id === id) { return item.quantity += 1 }
     });
 
     return { type: "ADD_CART", payload: newData };
+};
+
+export const deleteItem = (data, id, type) => {
+    const newData = data.filter((item) => item.id !== id);
+    return { type, payload: newData };
 };
 
 

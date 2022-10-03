@@ -8,6 +8,8 @@ import { useEffect } from 'react'
 function Cart({ sidebarFunc, openState }) {
 
     const { state } = useContext(ProductContext)
+    const { cart } = state
+    const [total, setTotal] = useState(0)
     // console.log(state);
 
     const st = {
@@ -17,7 +19,16 @@ function Cart({ sidebarFunc, openState }) {
     }
 
 
+    useEffect(() => {
+        const getTotal = () => {
+            const res = cart.reduce((prev, item) => {
+                return prev + item.price * item.quantity;
+            }, 0);
 
+            setTotal(res)
+        };
+        getTotal();
+    }, [cart]);
 
 
 
@@ -30,7 +41,7 @@ function Cart({ sidebarFunc, openState }) {
             {state.cart.map(item => (
                 <CartItem cartData={item} key={item.id} />
             ))}
-
+            <h1 className='text-[30px] text-black'>Total Price: {total}$</h1>
         </div>
     )
 }

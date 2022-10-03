@@ -3,7 +3,7 @@ import { RiDeleteBin6Line } from 'react-icons/ri'
 import { AiOutlinePlus, AiOutlineMinus } from 'react-icons/ai'
 import { useContext } from 'react'
 import { ProductContext } from '../context/ProductContext'
-import { increase, decrease } from "../context/ProductContext"
+import { increase, decrease, deleteItem } from "../context/ProductContext"
 const CartItem = ({ cartData, onAdd, onRemove }) => {
     const { state, dispatch } = useContext(ProductContext)
     const { cart } = state
@@ -33,15 +33,16 @@ const CartItem = ({ cartData, onAdd, onRemove }) => {
                 <div className={style.cartWrapper}>
                     <img className={style.cartImage} src={cartData.data.productImage} alt="" />
                     <h1 className={style.cartName}>{cartData.data.productName}</h1> &nbsp; &nbsp; &nbsp; &nbsp;
-                    {/* <h3 className={style.cartPrice}>$ {cartData.data.productPrice * Math.min(Math.max(parseInt(number), 1), 10)}</h3> */}
+                    {/* <h3 className={style.cartPrice}>$ {cartData.data.productPrice * Math.min(Math.max(parseInt(cartData.quantity), 1), 10)}</h3> */}
+                    <h3 className={style.cartPrice}>$ {cartData.data.productPrice * cartData.quantity}</h3>
                     <div className={style.cartFunc}>
                         <div className={style.cartTop}>
-                            <button onClick={() => dispatch(decrease(cart, cartData.id))} className={style.minusBtn}><AiOutlineMinus className={style.minusIcon} /></button>
-
-                            <button onClick={() => dispatch(increase(cart, cartData.id))} className={style.minusBtn}><AiOutlinePlus className={style.minusIcon} /></button>
+                            <button disabled={cart.map(item => item.id === cartData.id) && cartData.quantity <= 1} onClick={() => dispatch(decrease(cart, cartData.id))} className={style.minusBtn}><AiOutlineMinus className={style.minusIcon} /></button>
+                            <div className={style.numDiv}>{Math.min(Math.max(parseInt(cartData.quantity), 1), 10)}</div>
+                            <button disabled={cart.map(item => item.id === cartData.id) && cartData.quantity > 9} onClick={() => dispatch(increase(cart, cartData.id))} className={style.plusBtn}><AiOutlinePlus className={style.plusIcon} /></button>
                         </div>
                         <div className={style.cartBottom}>
-                            <RiDeleteBin6Line className={style.trashBtn} />
+                            <RiDeleteBin6Line className={style.trashBtn} onClick={() => dispatch(deleteItem(cart, cartData.id, "ADD_CART"))} />
                         </div>
                     </div>
                 </div>
