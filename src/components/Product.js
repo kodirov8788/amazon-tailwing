@@ -4,10 +4,10 @@ import { TiTick } from 'react-icons/ti'
 import { ProductContext } from '../context/ProductContext'
 import { addToCart } from "../context/ProductContext"
 
+
 function Product({ product }) {
     const { state, dispatch } = useContext(ProductContext)
     const { cart } = state
-    console.log(cart)
     // console.log("state >>", state)
     const style = {
         card: "w-[250px] h-[400px] bg-blue-300 m-3 rounded-[10px] overflow-hidden group ",
@@ -20,7 +20,7 @@ function Product({ product }) {
         icon2: "text-[30px] mx-auto mt-[20px] group-hover:scale-[1.1] duration-150 cursor-pointer"
     }
     // const AddProduct = (item) => {
-    //     // console.log("product  >>>>", item)
+
     //     dispatch({ type: "ADD__CART", payload: item })
     // }
     return (
@@ -29,13 +29,12 @@ function Product({ product }) {
             <div className={style.wrap}>
                 <div className={style.textWrap}>
                     <h1 className={style.h1}>{product.data.productName.split("").splice(0, 14).join("")}</h1>
-                    <h2 className={style.h2}> ${product.data.productPrice}</h2>
+                    <h2 className={style.h2}> {product.data.productPrice}</h2>
                 </div>
 
                 {
                     state.cart?.some(it => it.id === product.id) ?
-                        <TiTick className={style.icon2} /> : <BsCartPlus
-                            className={style.icon} onClick={() => dispatch(addToCart(product, cart))} />
+                        <TiTick className={style.icon2} /> : <BsCartPlus className={style.icon} onClick={() => dispatch(addToCart(product, cart))} />
                 }
 
 

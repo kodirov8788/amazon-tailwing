@@ -13,16 +13,16 @@ const CartItem = ({ cartData, onAdd, onRemove }) => {
         cartWrapper: 'w-[100%] h-[100px] flex mt-[25px]',
         cartImage: 'h-[100px] w-[100px] rounded-[6px] ml-[15px] mr-[15px]',
         cartName: 'text-[20px] text-black',
-        cartPrice: 'text-black',
-        cartFunc: 'h-[100px] bg-red-300 w-[200px] ml-[20px]',
-        cartTop: 'h-[50%] w-[100%] bg-yellow-400 flex',
-        minusBtn: 'h-[100%] w-[33%] bg-green-100 flex items-center justify-center',
-        minusIcon: 'text-[30px] cursor-pointer text-[#172b4d]',
-        numDiv: 'h-[100%] w-[34%] bg-green-400 flex items-center justify-center text-[20px] text-[black] rounded-[8px]',
-        plusBtn: 'h-[100%] w-[33%] bg-green-100 flex items-center justify-center',
-        plusIcon: 'text-[30px] cursor-pointer text-[#172b4d]',
-        cartBottom: 'h-[50%] w-[70%] ml-[15%] flex items-center bg-yellow-300 justify-center ',
-        trashBtn: 'text-[30px] text-[red] cursor-pointer'
+        cartPrice: 'text-black font-bold text-[20px] absolute left-[130px] translate-y-[40px]',
+        // cartFunc: 'h-[100px] border border-black-[5px] w-[200px] ml-[-20px]',
+        cartTop: ' border-[1.8px] border-[#ECECEC] w-[116px] h-[35px] rounded-lg flex translate-x-[100px]',
+        minusBtn: 'h-[100%] w-[33%]  flex items-center justify-center',
+        minusIcon: 'text-[20px] cursor-pointer text-[#172b4d]',
+        numDiv: 'h-[100%] w-[34%]  flex items-center justify-center text-[20px] text-[black] rounded-[8px]',
+        plusBtn: 'h-[100%] w-[33%]  flex items-center justify-center',
+        plusIcon: 'text-[20px] cursor-pointer text-[#172b4d]',
+        cartBottom: ' items-center  justify-center ',
+        trashBtn: 'text-[27px] text-[black] translate-x-[180px] my-[10px] cursor-pointer'
 
 
 
@@ -32,8 +32,8 @@ const CartItem = ({ cartData, onAdd, onRemove }) => {
             <div className={style.cartDiv} >
                 <div className={style.cartWrapper}>
                     <img className={style.cartImage} src={cartData.data.productImage} alt="" />
-                    <h1 className={style.cartName}>{cartData.data.productName}</h1> &nbsp; &nbsp; &nbsp; &nbsp;
-                    {/* <h3 className={style.cartPrice}>$ {cartData.data.productPrice * Math.min(Math.max(parseInt(cartData.quantity), 1), 10)}</h3> */}
+                    <h1 className={style.cartName}>{cartData.data.productName}</h1> &nbsp; &nbsp; &nbsp; &nbsp; <br />
+
                     <h3 className={style.cartPrice}>$ {cartData.data.productPrice * cartData.quantity}</h3>
                     <div className={style.cartFunc}>
                         <div className={style.cartTop}>

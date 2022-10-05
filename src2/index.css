@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg_img {
+    background-image: url("./images/1.jpg");
+}
+
+.bg_imglogin {
+    background-image: url("./images/2.jpg");
+}

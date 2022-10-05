@@ -9,26 +9,32 @@ function Cart({ sidebarFunc, openState }) {
 
     const { state } = useContext(ProductContext)
     const { cart } = state
-    const [total, setTotal] = useState(0)
-    // console.log(state);
+    const [total, setTotal] = useState({
+        priceTotal: 0,
+        totalQuantity: 0,
+    })
+
+    console.log(total)
+
 
     const st = {
-        cart: `w-2/5 h-full fixed top-0 right-0 bg-[rgb(231,231,231)] overflow-y-auto ${openState ? 'translate-x-[0px] ' : ' translate-x-[540px]'}`,
+        cart: `w-2/5 h-full fixed top-0 right-0 bg-[rgb(231,231,231)] overflow-y-auto ${openState ? 'translate-x-[0px] ' : ' translate-x-[800px]'}`,
         h1: 'text-[50px] text-[black] m-[10px]',
         xmark: 'text-[30px] mt-[20px] ml-[20px] bg-red-300 p-[5px] rounded-[10px] cursor-pointer '
     }
-
-
     useEffect(() => {
         const getTotal = () => {
-            const res = cart.reduce((prev, item) => {
+            const price = cart.reduce((prev, item) => {
                 return prev + item.price * item.quantity;
             }, 0);
-
-            setTotal(res)
+            const quantity = cart.reduce((prev, item) => {
+                return prev + item.quantity;
+            }, 0);
+            setTotal({ ...total, priceTotal: price, totalQuantity: quantity })
         };
         getTotal();
     }, [cart]);
+
 
 
 
@@ -41,7 +47,7 @@ function Cart({ sidebarFunc, openState }) {
             {state.cart.map(item => (
                 <CartItem cartData={item} key={item.id} />
             ))}
-            <h1 className='text-[30px] text-black'>Total Price: {total}$</h1>
+            <h1 className='text-[30px] text-black'>Jami {total.totalQuantity} maxsulot {total.priceTotal}$</h1>
         </div>
     )
 }
