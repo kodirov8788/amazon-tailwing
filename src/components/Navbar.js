@@ -13,7 +13,6 @@ import { useEffect } from 'react';
 const Navbar = ({ profileName, profileImg }) => {
     const { state } = useContext(ProductContext)
     const { currentUser } = useContext(AuthContext)
-    const { email } = currentUser
     const { cart } = state
     const style = {
         nav: "bg-[#131921] w-full h-[80px] text-white p-[16px] items-center flex",
@@ -52,7 +51,7 @@ const Navbar = ({ profileName, profileImg }) => {
     }
     return (
         <div className={style.nav}>
-            <button className="border bg-red-400 hover:bg-blue-400 p-2 lg:hidden  rounded duration-500"
+            <button className="border bg-red-400 hover:bg-blue-400 p-2  rounded duration-500"
                 onClick={() => signOut(auth)}>Sign Out</button>
             <div className={style.nav_first}>
                 <div className={style.nav_first_left}>
@@ -78,7 +77,7 @@ const Navbar = ({ profileName, profileImg }) => {
                 <div className={style.nav_first_right}>
                     <h1>{profileName}</h1>
                     <img src={profileImg} className="w-[50px] rounded-full" alt="" />
-                    {!email && <div className="w-[125px] flex  items-center h-[70px] hover:border-[#fff] hover:border-[1px]">
+                    {currentUser?.email ? "" : <div className="w-[125px] flex  items-center h-[70px] hover:border-[#fff] hover:border-[1px]">
                         <span className='mb-[3px] w-[150px] flex ml-[15px]'><Link to="/login">Sign in</Link><img className='w-[30px] h-[30px] ml-[10px] rounded-[50%]' src={Login} alt="" /></span>
                         <FiUser className={style.nav_icon_user} />
 
